@@ -1,0 +1,1597 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Verveo Redesign — Case Study | Sandhya</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    :root {
+      --bg: #F8F9FB;
+      --bg2: #F1F5F9;
+      --bg3: #ffffff;
+      --white: #ffffff;
+      --black: #000000;
+      --text: #111111;
+      --text-mid: #444444;
+      --text-muted: #777777;
+      --border: rgba(0, 0, 0, 0.08);
+      --border-md: rgba(0, 0, 0, 0.12);
+      --accent: #7C3AED;
+      --accent-orange: #F97316;
+      --accent-gradient: linear-gradient(90deg, #F97316 0%, #7C3AED 100%);
+      --accent-dim: rgba(124, 58, 237, 0.1);
+      --accent-line: #7C3AED;
+      --card-bg: #ffffff;
+      --card-hover: #F1F5F9;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Inter", sans-serif;
+      font-weight: 400;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ── */
+    nav {
+      background: rgba(248, 249, 251, 0.92);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 60px;
+      height: 62px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .nav-logo {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: 0.02em;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .nav-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent-gradient);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 36px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-muted);
+      text-decoration: none;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
+    .nav-links a.active {
+      color: var(--text);
+    }
+
+    .nav-resume {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: var(--text);
+      text-decoration: none;
+      border: 1px solid var(--border-md);
+      padding: 8px 18px;
+      border-radius: 100px;
+      transition:
+        border-color 0.2s,
+        background 0.2s;
+    }
+
+    .nav-resume:hover {
+      border-color: rgba(255, 255, 255, 0.3);
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    /* ── BREADCRUMB ── */
+    .breadcrumb {
+      padding: 13px 60px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .breadcrumb a {
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .breadcrumb a:hover {
+      color: var(--text);
+    }
+
+    .breadcrumb .sep {
+      opacity: 0.3;
+    }
+
+    .breadcrumb .cur {
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      padding: 80px 60px 72px;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 40px;
+    }
+
+    .hero-content {
+      flex: 1;
+      max-width: 650px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-image-wrapper {
+      flex: 1;
+      max-width: 600px;
+      display: flex;
+      justify-content: flex-end;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-image-wrapper img {
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+      border: 1px solid var(--border-md);
+      box-shadow:
+        0 20px 40px rgba(0, 0, 0, 0.1),
+        0 0 100px rgba(124, 58, 237, 0.05);
+      transform: perspective(1000px) rotateY(-5deg) rotateX(2deg);
+      transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .hero-image-wrapper img:hover {
+      transform: perspective(1000px) rotateY(0deg) rotateX(0deg);
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      top: -160px;
+      right: -80px;
+      width: 480px;
+      height: 480px;
+      background: radial-gradient(circle,
+          rgba(139, 92, 246, 0.06) 0%,
+          transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--accent);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 28px;
+    }
+
+    .hero-badge::before {
+      content: "";
+      width: 20px;
+      height: 2px;
+      background: var(--accent-gradient);
+      border-radius: 2px;
+    }
+
+    .hero-title {
+      font-size: clamp(42px, 6vw, 80px);
+      font-weight: 800;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      color: var(--text);
+      max-width: 800px;
+      margin-bottom: 24px;
+    }
+
+    .hero-desc {
+      font-size: 17px;
+      color: var(--text-mid);
+      max-width: 560px;
+      line-height: 1.7;
+      margin-bottom: 52px;
+    }
+
+    .hero-meta-row {
+      display: flex;
+      gap: 0;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+      max-width: 780px;
+      background: var(--bg2);
+    }
+
+    .meta-cell {
+      flex: 1;
+      padding: 20px 24px;
+      border-right: 1px solid var(--border);
+    }
+
+    .meta-cell:last-child {
+      border-right: none;
+    }
+
+    .meta-cell label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      display: block;
+      margin-bottom: 7px;
+    }
+
+    .meta-cell span {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    /* ── LIVE BANNER ── */
+    .live-banner {
+      background: #0f0f0f;
+      border-bottom: 1px solid var(--border);
+      padding: 18px 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .live-banner p {
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    .live-banner p strong {
+      color: var(--text);
+    }
+
+    .btn-links {
+      display: flex;
+      gap: 10px;
+    }
+
+    .btn-live {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: var(--accent-gradient);
+      color: white;
+      border: none;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      padding: 9px 18px;
+      border-radius: 100px;
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+
+    .btn-live:hover {
+      opacity: 0.85;
+    }
+
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: transparent;
+      color: var(--text-mid);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      padding: 9px 20px;
+      border-radius: 100px;
+      text-decoration: none;
+      border: 1px solid var(--border-md);
+      transition: all 0.2s ease;
+    }
+
+    /* Target ghost button in dark banner */
+    .live-banner .btn-ghost {
+      color: rgba(255, 255, 255, 0.8);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .btn-ghost:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: rgba(124, 58, 237, 0.05);
+    }
+
+    .live-banner .btn-ghost:hover {
+      border-color: #ffffff;
+      color: #ffffff;
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    /* ── SECTION LAYOUT ── */
+    .sec {
+      padding: 72px 60px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .sec.alt {
+      background: var(--bg2);
+    }
+
+    .eyebrow {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 18px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 20px;
+      height: 2px;
+      background: var(--accent-gradient);
+      border-radius: 2px;
+    }
+
+    h2 {
+      font-size: clamp(28px, 3.5vw, 44px);
+      font-weight: 800;
+      line-height: 1.08;
+      letter-spacing: -0.025em;
+      color: var(--text);
+      margin-bottom: 18px;
+    }
+
+    .body-p {
+      font-size: 16px;
+      color: var(--text-mid);
+      max-width: 620px;
+      line-height: 1.75;
+    }
+
+    .body-p+.body-p {
+      margin-top: 14px;
+    }
+
+    /* ── BEFORE / AFTER ── */
+    .cmp-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 44px;
+    }
+
+    .cmp-card {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      background: var(--card-bg);
+    }
+
+    .cmp-card.af {
+      border-color: rgba(139, 92, 246, 0.25);
+    }
+
+    .cmp-hdr {
+      padding: 18px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .cmp-hdr.af {
+      border-bottom-color: rgba(139, 92, 246, 0.15);
+    }
+
+    .cbadge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border-radius: 100px;
+    }
+
+    .cbadge.bef {
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text-muted);
+      border: 1px solid var(--border);
+    }
+
+    .cbadge.aft {
+      background: var(--accent-dim);
+      color: var(--accent);
+      border: 1px solid rgba(139, 92, 246, 0.3);
+    }
+
+    .clink {
+      font-size: 12px;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .clink:hover {
+      color: var(--text);
+    }
+
+    .cmp-body {
+      padding: 24px;
+    }
+
+    .clist {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 11px;
+    }
+
+    .clist li {
+      display: flex;
+      align-items: flex-start;
+      gap: 11px;
+      font-size: 14px;
+      color: var(--text-mid);
+      line-height: 1.5;
+    }
+
+    .ci {
+      font-size: 13px;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .ci.x {
+      color: rgba(255, 255, 255, 0.2);
+    }
+
+    .ci.ok {
+      color: var(--accent);
+    }
+
+    /* ── PROJECT CARD STYLE (like Selected Work) ── */
+    .proj-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+      padding-top: 16px;
+      border-top: 1px solid var(--accent-line);
+    }
+
+    .proj-name {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .proj-arrow {
+      font-size: 18px;
+      color: var(--text-muted);
+    }
+
+    /* ── CONTRIBUTIONS ── */
+    .con-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 44px;
+    }
+
+    .con-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 28px 26px;
+      transition:
+        border-color 0.2s,
+        background 0.2s;
+    }
+
+    .con-card:hover {
+      border-color: var(--border-md);
+      background: var(--card-hover);
+    }
+
+    .con-emoji {
+      font-size: 26px;
+      margin-bottom: 18px;
+    }
+
+    .con-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 10px;
+      letter-spacing: -0.01em;
+    }
+
+    .con-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.65;
+    }
+
+    /* ── PROCESS TABLE ── */
+    .proc-table {
+      margin-top: 44px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .proc-row {
+      display: grid;
+      grid-template-columns: 56px 1fr 1fr;
+      border-bottom: 1px solid var(--border);
+      background: var(--card-bg);
+      transition: background 0.15s;
+    }
+
+    .proc-row:last-child {
+      border-bottom: none;
+    }
+
+    .proc-row:hover {
+      background: var(--card-hover);
+    }
+
+    .p-num {
+      padding: 24px 0 24px 24px;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    .p-ttl {
+      padding: 24px;
+      border-left: 1px solid var(--border);
+      border-right: 1px solid var(--border);
+    }
+
+    .p-ttl h3 {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+
+    .p-ttl p {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    .p-tags {
+      padding: 24px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      align-content: flex-start;
+    }
+
+    .tag {
+      font-size: 11px;
+      font-weight: 500;
+      padding: 4px 10px;
+      border-radius: 100px;
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text-muted);
+      border: 1px solid var(--border);
+    }
+
+    .tag.or {
+      background: var(--accent-dim);
+      color: var(--accent);
+      border-color: rgba(139, 92, 246, 0.3);
+    }
+
+    .tag.wh {
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--text);
+      border-color: var(--border-md);
+    }
+
+    /* ── SVG SECTION ── */
+    .anim-wrap {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 72px;
+      align-items: center;
+    }
+
+    .chip-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 28px;
+    }
+
+    .chip {
+      font-size: 12px;
+      font-weight: 500;
+      padding: 6px 14px;
+      border-radius: 100px;
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text-mid);
+      border: 1px solid var(--border);
+    }
+
+    .anim-box {
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: #0a0a12;
+      aspect-ratio: 4/3;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .anim-box svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .anim-tag {
+      position: absolute;
+      bottom: 14px;
+      left: 18px;
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    /* svg keyframes */
+    .pr {
+      transform-origin: 200px 160px;
+      animation: pr 3s ease-in-out infinite;
+    }
+
+    .pr:nth-child(2) {
+      animation-delay: 1s;
+    }
+
+    .pr:nth-child(3) {
+      animation-delay: 2s;
+    }
+
+    @keyframes pr {
+      0% {
+        r: 20;
+        opacity: 0.8;
+      }
+
+      100% {
+        r: 100;
+        opacity: 0;
+      }
+    }
+
+    .od {
+      transform-origin: 200px 160px;
+      animation: od 8s linear infinite;
+    }
+
+    .od2 {
+      transform-origin: 200px 160px;
+      animation: od 12s linear infinite reverse;
+    }
+
+    @keyframes od {
+      from {
+        transform: rotate(0deg) translateX(70px) rotate(0deg);
+      }
+
+      to {
+        transform: rotate(360deg) translateX(70px) rotate(-360deg);
+      }
+    }
+
+    .pd {
+      stroke-dasharray: 500;
+      stroke-dashoffset: 500;
+      animation: pd 4s ease infinite;
+    }
+
+    @keyframes pd {
+      0% {
+        stroke-dashoffset: 500;
+        opacity: 1;
+      }
+
+      60% {
+        stroke-dashoffset: 0;
+        opacity: 1;
+      }
+
+      100% {
+        stroke-dashoffset: 0;
+        opacity: 0;
+      }
+    }
+
+    .fa {
+      animation: fa 4s ease-in-out infinite alternate;
+    }
+
+    .fb {
+      animation: fa 5s ease-in-out infinite alternate-reverse;
+    }
+
+    @keyframes fa {
+      to {
+        transform: translateY(-10px);
+      }
+    }
+
+    /* ── IMPACT ── */
+    .imp-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-top: 44px;
+    }
+
+    .imp-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 28px 24px;
+      transition: border-color 0.2s;
+    }
+
+    .imp-card:hover {
+      border-color: var(--border-md);
+    }
+
+    .imp-num {
+      font-size: 48px;
+      font-weight: 900;
+      line-height: 1;
+      letter-spacing: -0.03em;
+      color: var(--text);
+      margin-bottom: 10px;
+    }
+
+    .imp-num em {
+      color: var(--accent);
+      font-style: normal;
+    }
+
+    .imp-lbl {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.55;
+    }
+
+    /* ── LEARNINGS ── */
+    .lrn-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 44px;
+    }
+
+    .lrn-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 28px;
+      display: flex;
+      gap: 16px;
+      transition: border-color 0.2s;
+    }
+
+    .lrn-card:hover {
+      border-color: var(--border-md);
+    }
+
+    .lrn-num {
+      width: 32px;
+      height: 32px;
+      flex-shrink: 0;
+      border-radius: 8px;
+      background: var(--accent-dim);
+      color: var(--accent);
+      font-size: 13px;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .lrn-card h3 {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 7px;
+    }
+
+    .lrn-card p {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.65;
+    }
+
+    /* ── CTA ── */
+    .cta-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 32px;
+      flex-wrap: wrap;
+    }
+
+    .cta-inner h2 {
+      margin-bottom: 8px;
+      font-size: clamp(24px, 3vw, 36px);
+    }
+
+    .cta-inner .body-p {
+      margin-bottom: 0;
+    }
+
+    .cta-btns {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      flex-shrink: 0;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      padding: 12px 22px;
+      border-radius: 100px;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+
+    .btn-or {
+      background: #111111;
+      color: white;
+      border: none;
+    }
+
+    .btn-or:hover {
+      background: #000;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .btn-ol {
+      background: transparent;
+      color: var(--text-mid);
+      border: 1px solid var(--border-md);
+    }
+
+    .btn-ol:hover {
+      border-color: rgba(255, 255, 255, 0.25);
+      color: var(--text);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 80px 40px;
+      background-color: #000000;
+      color: #ffffff;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      gap: 12px;
+    }
+
+    footer p {
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.6);
+      margin: 0;
+    }
+
+    /* ── FADE IN ── */
+    .fu {
+      opacity: 0;
+      transform: translateY(20px);
+      transition:
+        opacity 0.6s ease,
+        transform 0.6s ease;
+    }
+
+    .fu.vis {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+
+      nav,
+      .breadcrumb,
+      .hero,
+      .sec,
+      .live-banner,
+      footer {
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+
+      .hero {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .hero-image-wrapper {
+        max-width: 100%;
+        margin-top: 30px;
+        justify-content: center;
+      }
+
+      .hero-image-wrapper img {
+        transform: none;
+      }
+
+      .hero-image-wrapper img:hover {
+        transform: none;
+      }
+
+      .cmp-grid,
+      .con-grid,
+      .anim-wrap,
+      .imp-grid,
+      .lrn-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .proc-row {
+        grid-template-columns: 44px 1fr;
+      }
+
+      .p-tags {
+        display: none;
+      }
+
+      .hero-meta-row {
+        flex-direction: column;
+      }
+
+      .meta-cell {
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .meta-cell:last-child {
+        border-bottom: none;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .cta-inner {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- NAV -->
+  <nav>
+    <a href="index.html" class="nav-logo" style="
+          text-decoration: none;
+          display: flex;
+          align-items: center;
+          gap: 4px;
+        ">
+      <span class="logo-mark" style="
+            font-weight: 900;
+            font-size: 2.5rem;
+            line-height: 1;
+            background: linear-gradient(
+              180deg,
+              var(--accent-line, #8b5cf6) 0%,
+              var(--accent-orange, #f97316) 100%
+            );
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            padding-bottom: 2px;
+          ">S</span>
+      <span class="logo-text" style="
+            font-family: inherit;
+            font-weight: 700;
+            font-size: 1.25rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text);
+          ">SANDHYA</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="index.html#about">About Me</a></li>
+      <li><a href="#" class="active">Portfolio</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-content">
+      <div class="hero-badge">UI/UX Design · Case Study</div>
+      <h1 class="hero-title">Verveo Website<br />Redesign</h1>
+      <p class="hero-desc">
+        Redesigning a UX agency's website from the ground up — rebuilding the
+        visual identity, expanding to a full multi-page experience, and
+        bringing the brand to life through custom SVG animations.
+      </p>
+      <div class="hero-meta-row">
+        <div class="meta-cell">
+          <label>My Role</label><span>UI/UX Designer</span>
+        </div>
+        <div class="meta-cell">
+          <label>Deliverables</label><span>UI Design + SVG Animation</span>
+        </div>
+        <div class="meta-cell">
+          <label>Type</label><span>Website Redesign</span>
+        </div>
+        <div class="meta-cell"><label>Status</label><span>Live</span></div>
+      </div>
+    </div>
+    <div class="hero-image-wrapper fu vis">
+      <img src="public/images/verveo-hero-mockup.png" alt="Verveo Website Desktop Mockup" />
+    </div>
+  </div>
+
+  <!-- BANNER -->
+  <div class="live-banner">
+    <p>
+      <strong>Live website —</strong> Visuals are from the live site and are
+      publicly accessible.
+    </p>
+    <div class="btn-links">
+      <a href="https://verveo.com" target="_blank" class="btn-live">View New Site ↗</a>
+      <a href="https://verveo.design" target="_blank" class="btn-ghost">View Old Site ↗</a>
+    </div>
+  </div>
+
+  <!-- OVERVIEW -->
+  <section class="sec">
+    <div style="
+          display: grid;
+          grid-template-columns: 1fr;
+          gap: 64px;
+          align-items: center;
+        " class="overview-grid">
+      <div class="overview-text">
+        <div class="eyebrow">Overview</div>
+        <h2>Why the site needed a redesign</h2>
+        <p class="body-p">
+          Verveo is a global UX and digital engineering company. Their
+          existing website (verveo.design) was built on WordPress and didn't
+          reflect the quality of their work. The visual identity felt generic,
+          page structure was minimal, and there were no service-focused pages
+          to support business growth.
+        </p>
+        <p class="body-p">
+          I was brought in to lead the complete UI redesign — starting from a
+          brand new visual language through to designing new pages, custom
+          illustrations, and SVG animations that now run across the live site
+          at verveo.com.
+        </p>
+      </div>
+
+      <div class="overview-visual">
+        <img src="public/images/verveo-comparison.png" alt="Verveo Before and After UI Mockup" style="
+              width: 100%;
+              height: auto;
+              display: block;
+              filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.5));
+            " />
+      </div>
+    </div>
+  </section>
+
+  <style>
+    @media (min-width: 900px) {
+      .overview-grid {
+        grid-template-columns: 1fr 1fr !important;
+        gap: 80px !important;
+      }
+    }
+
+    .overview-visual {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  </style>
+
+  <!-- BEFORE / AFTER -->
+  <section class="sec alt fu">
+    <div class="eyebrow">Before & After</div>
+    <h2>Two websites. One clear upgrade.</h2>
+    <div class="cmp-grid">
+      <div class="cmp-card">
+        <div class="cmp-hdr">
+          <span class="cbadge bef">● &nbsp;Before</span>
+          <a href="https://verveo.design" target="_blank" class="clink">verveo.design ↗</a>
+        </div>
+        <div class="cmp-body">
+          <ul class="clist">
+            <li>
+              <span class="ci x">✕</span>WordPress site with generic layout
+              templates
+            </li>
+            <li>
+              <span class="ci x">✕</span>No consistent visual identity or
+              design system
+            </li>
+            <li>
+              <span class="ci x">✕</span>Only 5 pages — limited content
+              structure
+            </li>
+            <li>
+              <span class="ci x">✕</span>No animations, purely static
+              experience
+            </li>
+            <li>
+              <span class="ci x">✕</span>Services listed but no dedicated
+              pages
+            </li>
+            <li>
+              <span class="ci x">✕</span>Weak typography and visual hierarchy
+            </li>
+            <li>
+              <span class="ci x">✕</span>Not positioned as a premium brand
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="cmp-card af">
+        <div class="cmp-hdr af">
+          <span class="cbadge aft">● &nbsp;After</span>
+          <a href="https://verveo.com" target="_blank" class="clink">verveo.com ↗</a>
+        </div>
+        <div class="cmp-body">
+          <ul class="clist">
+            <li>
+              <span class="ci ok">✓</span>Modern Next.js site — fast,
+              scalable, performant
+            </li>
+            <li>
+              <span class="ci ok">✓</span>Full design system — colour, type,
+              components
+            </li>
+            <li>
+              <span class="ci ok">✓</span>10+ pages with clear information
+              architecture
+            </li>
+            <li>
+              <span class="ci ok">✓</span>Custom SVG animations and video hero
+              section
+            </li>
+            <li>
+              <span class="ci ok">✓</span>Dedicated pages for Digital Eng, AI,
+              Cloud, UX/CX
+            </li>
+            <li>
+              <span class="ci ok">✓</span>Strong typographic hierarchy and
+              spatial layout
+            </li>
+            <li>
+              <span class="ci ok">✓</span>Enterprise-grade brand positioning
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- project card style row — like "Selected Work" -->
+    <div style="
+          margin-top: 32px;
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 16px;
+        ">
+      <div>
+        <div class="proj-label">UI/UX DESIGN</div>
+        <div class="proj-name">Verveo Website</div>
+      </div>
+      <div>
+        <div class="proj-label">REDESIGNED FROM</div>
+        <div class="proj-name">verveo.design</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MY CONTRIBUTIONS -->
+  <section class="sec fu">
+    <div class="eyebrow">My Contributions</div>
+    <h2>What I owned on this project</h2>
+    <div class="con-grid">
+      <div class="con-card">
+        <div class="con-emoji">🎨</div>
+        <div class="con-title">Visual Identity & Design System</div>
+        <p class="con-desc">
+          Rebuilt the brand from scratch — colour palette, typography scale,
+          component library, and spacing system. Every element designed to
+          feel premium and consistent across all pages.
+        </p>
+      </div>
+      <div class="con-card">
+        <div class="con-emoji">📐</div>
+        <div class="con-title">Information Architecture & New Pages</div>
+        <p class="con-desc">
+          Designed and added multiple new pages — Digital Engineering, AI,
+          Cloud, UX/CX service pages, About, Culture, Vision, and more.
+          Created clear user flows and navigation.
+        </p>
+      </div>
+      <div class="con-card">
+        <div class="con-emoji">✦</div>
+        <div class="con-title">SVG Animation & Motion Design</div>
+        <p class="con-desc">
+          Designed and implemented custom SVG animations across the site —
+          hero animations, service illustrations, and scroll-triggered
+          interactions throughout the experience.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section class="sec alt fu">
+    <div class="eyebrow">Design Process</div>
+    <h2>How I approached the redesign</h2>
+    <div class="proc-table">
+      <div class="proc-row">
+        <div class="p-num">01</div>
+        <div class="p-ttl">
+          <h3>Discovery & Audit</h3>
+          <p>
+            Analysed the existing site, identified visual and content gaps,
+            reviewed competitor positioning.
+          </p>
+        </div>
+        <div class="p-tags">
+          <span class="tag">Heuristic Audit</span><span class="tag">Competitor Research</span><span
+            class="tag">Stakeholder Interviews</span>
+        </div>
+      </div>
+      <div class="proc-row">
+        <div class="p-num">02</div>
+        <div class="p-ttl">
+          <h3>Brand Direction</h3>
+          <p>
+            Defined new visual language — premium dark aesthetic signalling
+            enterprise credibility.
+          </p>
+        </div>
+        <div class="p-tags">
+          <span class="tag or">Moodboarding</span><span class="tag or">Colour System</span><span class="tag">Typography
+            Scale</span>
+        </div>
+      </div>
+      <div class="proc-row">
+        <div class="p-num">03</div>
+        <div class="p-ttl">
+          <h3>Wireframing & Layout</h3>
+          <p>
+            Structured all pages in Figma — grid, hierarchy, content flow
+            before visual design.
+          </p>
+        </div>
+        <div class="p-tags">
+          <span class="tag">Figma Wireframes</span><span class="tag">Page Architecture</span><span class="tag">Grid
+            System</span>
+        </div>
+      </div>
+      <div class="proc-row">
+        <div class="p-num">04</div>
+        <div class="p-ttl">
+          <h3>High-Fidelity UI Design</h3>
+          <p>
+            Designed all screens in full fidelity — brand system, custom
+            illustrations, full layouts.
+          </p>
+        </div>
+        <div class="p-tags">
+          <span class="tag wh">UI Design</span><span class="tag wh">Component Library</span><span class="tag">Responsive
+            Design</span>
+        </div>
+      </div>
+      <div class="proc-row">
+        <div class="p-num">05</div>
+        <div class="p-ttl">
+          <h3>SVG Animation Design</h3>
+          <p>
+            Created custom SVG animations for hero section, service icons, and
+            scroll-triggered sections.
+          </p>
+        </div>
+        <div class="p-tags">
+          <span class="tag or">SVG Animation</span><span class="tag or">Motion Design</span><span
+            class="tag">Micro-interactions</span>
+        </div>
+      </div>
+      <div class="proc-row">
+        <div class="p-num">06</div>
+        <div class="p-ttl">
+          <h3>Handoff & QA</h3>
+          <p>
+            Prepared developer-ready specs and reviewed live implementation
+            for design fidelity.
+          </p>
+        </div>
+        <div class="p-tags">
+          <span class="tag">Dev Handoff</span><span class="tag">QA Review</span><span class="tag">Design Specs</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SVG ANIMATION -->
+  <section class="sec fu">
+    <div class="anim-wrap">
+      <div>
+        <div class="eyebrow">Highlight — Motion Design</div>
+        <h2>SVG Animations that make the brand feel alive</h2>
+        <p class="body-p">
+          One of my key contributions was designing and building custom SVG
+          animations for the Verveo website. These were purposeful —
+          communicating Verveo's technical sophistication and design craft at
+          first glance.
+        </p>
+        <p class="body-p">
+          I designed animations for the hero section, service icons, and
+          scroll-triggered transitions, creating a sense of energy throughout
+          the experience.
+        </p>
+        <div class="chip-row">
+          <span class="chip">SVG Path Animation</span>
+          <span class="chip">Scroll Triggers</span>
+          <span class="chip">Motion Timing</span>
+          <span class="chip">Interactive States</span>
+        </div>
+      </div>
+      <a href="https://verveo.com/services" target="_blank" class="anim-box" style="
+            display: block;
+            cursor: pointer;
+            text-decoration: none;
+            padding: 0;
+            overflow: hidden;
+            position: relative;
+          ">
+        <!-- Embedded Live SVG Animation Cover -->
+        <img src="public/images/verveo-ai-animation.png" alt="Live SVG Animation Cover" style="
+              width: 100%;
+              height: auto;
+              min-height: 480px;
+              object-fit: cover;
+              display: block;
+            " />
+
+        <!-- Overlay to ensure the entire box behaves as a clean link -->
+        <div style="position: absolute; inset: 0; z-index: 10"></div>
+
+        <div class="anim-tag" style="
+              position: absolute;
+              bottom: 20px;
+              right: 20px;
+              z-index: 20;
+              background: rgba(0, 0, 0, 0.8);
+              border: 1px solid var(--border-md);
+              backdrop-filter: blur(8px);
+            ">
+          View Live Services Page ↗
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- IMPACT -->
+  <section class="sec alt fu">
+    <div class="eyebrow">Impact</div>
+    <h2>What the redesign delivered</h2>
+    <div class="imp-grid">
+      <div class="imp-card">
+        <div class="imp-num">10<em>+</em></div>
+        <div class="imp-lbl">New pages designed and built into the site</div>
+      </div>
+      <div class="imp-card">
+        <div class="imp-num">100<em>%</em></div>
+        <div class="imp-lbl">
+          Visual identity rebuilt completely from scratch
+        </div>
+      </div>
+      <div class="imp-card">
+        <div class="imp-num">4</div>
+        <div class="imp-lbl">
+          New service verticals with dedicated landing pages
+        </div>
+      </div>
+      <div class="imp-card">
+        <div class="imp-num">∞</div>
+        <div class="imp-lbl">
+          Custom SVG animations bringing the brand to life
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LEARNINGS -->
+  <section class="sec fu">
+    <div class="eyebrow">Key Learnings</div>
+    <h2>What this project taught me</h2>
+    <div class="lrn-grid">
+      <div class="lrn-card">
+        <div class="lrn-num">01</div>
+        <div>
+          <h3>Design is brand strategy</h3>
+          <p>
+            Every visual decision — colour, space, motion — communicates
+            positioning. UI design is not decoration; it's how a business
+            speaks without words.
+          </p>
+        </div>
+      </div>
+      <div class="lrn-card">
+        <div class="lrn-num">02</div>
+        <div>
+          <h3>SVG animation needs craft and restraint</h3>
+          <p>
+            I learned to balance expressiveness with performance. The most
+            effective animations were purposeful and subtle — not distracting,
+            but memorable.
+          </p>
+        </div>
+      </div>
+      <div class="lrn-card">
+        <div class="lrn-num">03</div>
+        <div>
+          <h3>Designing systems, not just screens</h3>
+          <p>
+            Designing 10+ pages forced me to think in components. Consistency
+            at scale requires decisions made early and enforced across every
+            page.
+          </p>
+        </div>
+      </div>
+      <div class="lrn-card">
+        <div class="lrn-num">04</div>
+        <div>
+          <h3>Real constraints sharpen creativity</h3>
+          <p>
+            Unlike side projects, this was a live brand with real
+            stakeholders. I learned to balance creative ambition with business
+            needs and dev feasibility.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="sec alt">
+    <div class="cta-inner">
+      <div>
+        <h2>The live website is the proof.</h2>
+        <p class="body-p">
+          Every design decision I made is visible on the live site. Visit
+          verveo.com to see the result.
+        </p>
+      </div>
+      <div class="cta-btns">
+        <a href="https://verveo.com" target="_blank" class="btn btn-or">View verveo.com ↗</a>
+        <a href="https://verveo.design" target="_blank" class="btn btn-ol">See old site ↗</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer style="opacity: 0.9;">
+    <p>© Sandhya — Portfolio Case Study</p>
+    <p>Verveo Website Redesign · UI/UX Design</p>
+  </footer>
+
+  <script>
+    const obs = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) e.target.classList.add("vis");
+        });
+      },
+      { threshold: 0.08 },
+    );
+    document.querySelectorAll(".fu").forEach((el) => obs.observe(el));
+  </script>
+</body>
+
+</html>

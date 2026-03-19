@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Social Media Design — Verveo | Portfolio</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Sora:wght@300;400;600;700;800&display=swap"
+        rel="stylesheet" />
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0
+        }
+
+        html {
+            scroll-behavior: smooth
+        }
+
+        :root {
+            --bg: #F8F9FB;
+            --bg2: #F1F5F9;
+            --white: #ffffff;
+            --black: #111111;
+            --text: #111111;
+            --text-mid: #444444;
+            --text-muted: #777777;
+            --border: rgba(0, 0, 0, 0.08);
+            --border-md: rgba(0, 0, 0, 0.12);
+            --accent: #7C3AED;
+            --accent-orange: #F97316;
+            --accent-gradient: linear-gradient(90deg, #F97316 0%, #7C3AED 100%);
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            line-height: 1.65;
+        }
+
+        /* ─── NAV ─── */
+        nav {
+            background: rgba(248, 249, 251, 0.92);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+            padding: 0 60px;
+            height: 62px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-logo {
+            font-size: 15px;
+            font-weight: 700;
+            color: #111111;
+            letter-spacing: 0.02em;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+        }
+
+        .nav-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: linear-gradient(90deg, #F97316 0%, #7C3AED 100%);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 36px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 13px;
+            font-weight: 500;
+            color: #777777;
+            text-decoration: none;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: #111111;
+        }
+
+        .nav-links a.active {
+            color: #111111;
+            font-weight: 700;
+        }
+
+        /* ─── HERO ─── */
+        .hero {
+            padding: 120px 40px 60px;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .label {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: #7C3AED;
+            margin-bottom: 24px;
+        }
+
+        .label::before {
+            content: '';
+            display: block;
+            width: 20px;
+            height: 2px;
+            background: var(--accent-gradient);
+            border-radius: 2px;
+        }
+
+        .hero h1 {
+            font-family: 'Inter', sans-serif;
+            font-size: clamp(2.2rem, 5vw, 3.8rem);
+            font-weight: 800;
+            line-height: 1.08;
+            letter-spacing: -0.03em;
+            color: #111111;
+            margin-bottom: 20px;
+            max-width: 700px;
+        }
+
+        .hero h1 span {
+            color: inherit;
+        }
+
+        /* ─── HERO GRAPHIC ─── */
+        .hero-graphic {
+            position: absolute;
+            right: 40px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 320px;
+            height: 320px;
+            opacity: 0.4;
+            pointer-events: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-graphic svg {
+            width: 100%;
+            height: 100%;
+            filter: drop-shadow(0 20px 40px rgba(124, 58, 237, 0.15));
+        }
+
+        .hero-meta {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            flex-wrap: wrap;
+            margin-bottom: 0;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .meta-tag {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 12px;
+            color: #111111;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+        }
+
+        .meta-tag svg {
+            width: 14px;
+            height: 14px;
+            color: #7C3AED;
+        }
+
+        .meta-divider {
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background: #2a2840
+        }
+
+
+
+        /* ─── OVERVIEW ─── */
+        .overview-section {
+            max-width: 1200px;
+            margin: 80px auto;
+            padding: 0 40px;
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 80px;
+            align-items: start;
+        }
+
+
+
+        .overview-label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: 'Sora', sans-serif;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: #8b5cf6;
+            margin-bottom: 20px;
+        }
+
+        .overview-label::before {
+            content: '';
+            width: 24px;
+            height: 2px;
+            background: var(--accent-gradient);
+            border-radius: 2px;
+        }
+
+        .overview-left h2 {
+            font-family: 'Inter', sans-serif;
+            font-size: 2rem;
+            font-weight: 800;
+            line-height: 1.15;
+            letter-spacing: -0.02em;
+            color: #111111;
+            margin-bottom: 32px;
+        }
+
+        .stat-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 20px
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.8);
+            border: 1px solid rgba(139, 92, 246, 0.12);
+            border-radius: 16px;
+            padding: 20px 24px;
+        }
+
+        .stat-num {
+            font-family: 'Inter', sans-serif;
+            font-size: 2rem;
+            font-weight: 800;
+            color: #111111;
+            letter-spacing: -0.02em;
+            line-height: 1;
+            margin-bottom: 4px;
+        }
+
+        .stat-num span {
+            color: #8b5cf6
+        }
+
+        .stat-desc {
+            font-size: 12px;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+
+
+        .overview-body {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .overview-body p {
+            font-size: 15px;
+            line-height: 1.85;
+            color: var(--text-mid);
+            font-weight: 400;
+        }
+
+        .overview-body p strong {
+            color: var(--text);
+            font-weight: 600;
+        }
+
+        .type-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 8px;
+        }
+
+        .type-tag {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 7px 14px;
+            border-radius: 100px;
+            font-family: 'Sora', sans-serif;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.06em;
+            border: 1px solid;
+        }
+
+        .type-tag.purple {
+            color: #7C3AED;
+            border-color: rgba(124, 58, 237, 0.25);
+            background: rgba(124, 58, 237, 0.08)
+        }
+
+        .type-tag.pink {
+            color: #db2777;
+            border-color: rgba(219, 39, 119, 0.25);
+            background: rgba(219, 39, 119, 0.08)
+        }
+
+        .type-tag.orange {
+            color: #d97706;
+            border-color: rgba(217, 119, 6, 0.25);
+            background: rgba(217, 119, 6, 0.08)
+        }
+
+        .type-tag.green {
+            color: #059669;
+            border-color: rgba(5, 150, 105, 0.25);
+            background: rgba(5, 150, 105, 0.08)
+        }
+
+        .type-tag svg {
+            width: 12px;
+            height: 12px;
+            stroke-width: 3;
+        }
+
+        /* ─── CTA ─── */
+        .cta-section {
+            max-width: 1200px;
+            margin: 0 auto 100px;
+            padding: 0 40px;
+        }
+
+        .cta-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(245, 245, 245, 0.6) 100%);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            border-radius: 24px;
+            padding: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+            flex-wrap: wrap;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-card::before {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.12) 0%, transparent 70%);
+            right: -100px;
+            top: -100px;
+            pointer-events: none;
+        }
+
+        .cta-left h3 {
+            font-family: 'Sora', sans-serif;
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: #111111;
+            margin-bottom: 10px;
+            letter-spacing: -0.02em;
+        }
+
+        .cta-left p {
+            font-size: 14px;
+            color: #6b6880;
+            line-height: 1.7;
+            max-width: 480px;
+        }
+
+        .cta-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: #111111;
+            color: #fff;
+            font-family: 'Sora', sans-serif;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            padding: 16px 32px;
+            border-radius: 100px;
+            text-decoration: none;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: all .25s ease;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+            background: #000;
+        }
+
+        .cta-btn svg {
+            width: 16px;
+            height: 16px
+        }
+
+        /* ─── DIVIDER ─── */
+        .section-divider {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        .section-divider hr {
+            border: none;
+            border-top: 1px solid rgba(139, 92, 246, 0.1);
+        }
+
+        @media(max-width:900px) {
+            .poster-grid {
+                grid-template-columns: repeat(2, 1fr)
+            }
+
+            .overview-section {
+                grid-template-columns: 1fr;
+                gap: 40px
+            }
+
+            .cta-card {
+                flex-direction: column;
+                padding: 40px
+            }
+        }
+
+        @media(max-width:580px) {
+
+            .hero,
+            .poster-grid-section,
+            .overview-section,
+            .cta-section,
+            .section-divider {
+                padding-left: 20px;
+                padding-right: 20px
+            }
+
+            .poster-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 10px;
+                padding: 12px
+            }
+
+            .back-nav {
+                padding: 16px 20px
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAV -->
+    <nav>
+        <a href="index.html" class="nav-logo">
+            <span class="logo-mark" style="
+            font-weight: 900;
+            font-size: 2.5rem;
+            line-height: 1;
+            background: linear-gradient(
+              180deg,
+              #7C3AED 0%,
+              #f97316 100%
+            );
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            padding-bottom: 2px;
+          ">S</span>
+            <span class="logo-text" style="
+            font-family: inherit;
+            font-weight: 700;
+            font-size: 1.25rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #111111;
+          ">SANDHYA</span>
+        </a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html#about">About Me</a></li>
+            <li><a href="#" class="active">Portfolio</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="label">Social Media Design</div>
+            <h1>LinkedIn <span>Campaign &</span><br />Poster Design</h1>
+            <div class="hero-meta-row">
+                    <div class="meta-value">UI/UX Design & Graphic Design</div>
+            </div>
+        </div>
+
+        <div class="hero-graphic">
+            <svg viewBox="0 0 240 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- Main Poster Frame -->
+                <rect x="50" y="30" width="140" height="180" rx="4" stroke="url(#poster-grad)" stroke-width="2" />
+                <!-- Internal "Content" Blocks (Visual abstraction of a poster) -->
+                <rect x="65" y="45" width="110" height="60" rx="2" fill="url(#poster-grad)" opacity="0.1" />
+                <rect x="65" y="115" width="70" height="8" rx="1" fill="var(--accent)" opacity="0.3" />
+                <rect x="65" y="130" width="110" height="4" rx="1" fill="var(--text)" opacity="0.1" />
+                <rect x="65" y="140" width="110" height="4" rx="1" fill="var(--text)" opacity="0.1" />
+                <rect x="65" y="150" width="90" height="4" rx="1" fill="var(--text)" opacity="0.1" />
+                <!-- Decorative element -->
+                <circle cx="160" cy="180" r="15" stroke="var(--accent-orange)" stroke-width="1.5" opacity="0.4" />
+                
+                <defs>
+                    <linearGradient id="poster-grad" x1="50" y1="30" x2="190" y2="210" gradientUnits="userSpaceOnUse">
+                        <stop stop-color="#F97316" />
+                        <stop offset="1" stop-color="#7C3AED" />
+                    </linearGradient>
+                </defs>
+            </svg>
+        </div>
+    </section>
+
+
+
+    <!-- Overview -->
+    <section class="overview-section">
+        <div class="overview-left">
+            <div class="overview-label">Overview</div>
+            <h2>Creative Visual Storytelling</h2>
+            <p class="cs-disclaimer"
+                style="font-size: 14px; color: #71717a; font-style: italic; margin-bottom: 30px; opacity: 0.9;">
+                Note: To protect intellectual property, the visuals shown below are abstract representations of the
+                creative direction. Original high-resolution designs can be shared upon request.
+            </p>
+            <div class="stat-stack">
+                <div class="stat-card">
+                    <div class="stat-num">30<span>+</span></div>
+                    <div class="stat-desc">Posters designed</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-num">2–3<span>/wk</span></div>
+                    <div class="stat-desc">Consistent posting cadence</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-num">4<span>x</span></div>
+                    <div class="stat-desc">Content categories covered</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="overview-right">
+            <div class="overview-body">
+                <p>As the in-house UI/UX designer at <strong>Verveo Solutions</strong> — a global UX and digital
+                    engineering company — I was responsible for shaping the brand's entire visual presence on LinkedIn.
+                    This wasn't just about making things look good; it was about turning complex technical services into
+                    content people actually stop and read.</p>
+
+                <p>Verveo offers services across <strong>Digital Engineering, Data & AI, Cloud & Infrastructure, and
+                        UX/CX Transformation</strong>. My job was to design weekly posts that translated each of these
+                    into clear, compelling visuals — breaking down topics like cloud migration strategy, business
+                    intelligence, and product engineering into formats that resonate with a professional audience.</p>
+
+                <p>Beyond service promotion, I also created a full range of <strong>company culture content</strong> —
+                    celebrating team birthdays, work anniversaries, and new joinings, as well as festival posts for
+                    occasions like Women's Day and Holi. Each design had to feel warm and human while staying consistent
+                    with Verveo's bold, tech-forward visual identity.</p>
+
+                <p>The result was a <strong>steady, high-quality stream of content</strong> — 2 to 3 posts per week —
+                    that helped Verveo build credibility, celebrate its people, and grow its presence as a thought
+                    leader in the digital engineering space.</p>
+
+                <div class="type-tags">
+                    <span class="type-tag purple">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="3" width="18" height="18" rx="2" />
+                            <path d="M3 9h18M9 21V9" />
+                        </svg>
+                        Service Promotion
+                    </span>
+                    <span class="type-tag pink">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                            <circle cx="9" cy="7" r="4" />
+                            <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                        </svg>
+                        Team Celebrations
+                    </span>
+                    <span class="type-tag orange">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <polygon
+                                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                        </svg>
+                        Festival Posts
+                    </span>
+                    <span class="type-tag green">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                            <polyline points="22 4 12 14.01 9 11.01" />
+                        </svg>
+                        Work Anniversaries
+                    </span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider">
+        <hr />
+    </div>
+
+    <!-- CTA -->
+    <section class="cta-section" style="margin-top:80px;">
+        <div class="cta-card">
+            <div class="cta-left">
+                <h3>View Original Designs</h3>
+                <p style="color: #3f3f46;">While the posters shown here are abstract, you can find my public
+                    contributions on LinkedIn. For confidential high-resolution original designs across service
+                    campaigns and team milestones, please feel free to reach out directly.</p>
+            </div>
+            <a href="https://www.linkedin.com/company/verveo-solutions/posts/" target="_blank" class="cta-btn">
+                LinkedIn Feed
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                    <polyline points="15 3 21 3 21 9" />
+                    <line x1="10" y1="14" x2="21" y2="3" />
+                </svg>
+            </a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>© 2026 Sandhya — Portfolio Case Study</p>
+        <p>Social Media LinkedIn Campaigns · UI/UX & Graphic Design</p>
+    </footer>
+
+    <style>
+        footer {
+            padding: 40px 60px;
+            background: #000;
+            color: #fff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        footer p {
+            font-size: 12px;
+            opacity: 0.9;
+            margin: 0;
+        }
+
+        @media (max-width: 768px) {
+            footer {
+                flex-direction: column;
+                gap: 12px;
+                text-align: center;
+                padding: 40px 20px;
+            }
+        }
+    </style>
+
+</body>
+
+</html>
